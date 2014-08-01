@@ -23,11 +23,17 @@ In addition, this project has a "config" file, in the root folder of the project
    * ```.PublicDnsName``` - Public DNS name
    * ```.PrivateDnsName``` - Private DNS name
 
-### Example configuration
+## Example Usage
+First, you must run "ls" to refresh the local list of instances
 ```
-user=ubuntu
-pem=~/.aws/dealpath.pem
-host_xpath=.PublicIpAddress
+LUKEs-MacBook-Pro:aws-ssh lrajlich$ aws-ssh ls
+thewall-test
+thewall-01
+winterfell-01
+thewall-02
+winterfell-02
 ```
-user - user you use to connec to 
-host_xpath
+Then, run a command and specify and instance name to connect to that host
+```
+LUKEs-MacBook-Pro:aws-ssh lrajlich$ aws-ssh thewall-05
+```
