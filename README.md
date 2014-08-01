@@ -24,6 +24,8 @@ In addition, this project has a "config" file, in the root folder of the project
    * ```.PublicDnsName``` - Use Public DNS name as ssh host
    * ```.PrivateDnsName``` - Use Private DNS name as ssh host
 
+If you edit the config file from the directory you git cloned into, you will have to run "make install" again as the config used by the command line is in the installed directory - /usr/local/aws-ssh/config (which installed via Make install).
+
 ## Example Usage
 First, you must run "ls" to refresh the local list of instances
 ```
