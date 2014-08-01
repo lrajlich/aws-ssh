@@ -13,7 +13,8 @@ cd
 make install
 ```
 ## Configure
-Make sure your AWS cli is configured, following steps here: 
+Make sure your AWS cli is configured, following steps here: (http://docs.aws.amazon.com/cli/latest/reference/configure/index.html)
+
 In addition, this project has a "config" file, in the root folder of the project, to be modified as needed, with 3 parameters:
  1. ```user``` - user used to connect to AWS hosts
  2. ```pem``` - pem file used for ssh key authentication with aws servers
