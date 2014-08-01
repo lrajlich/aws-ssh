@@ -20,8 +20,9 @@ if [ -z $1 ]; then
 	usage
 fi
 
+aws_ssh_dir=$(dirname $(readlink $BASH_SOURCE))
+
 ## Configuration
-aws_ssh_dir=.
 aws_ssh_data_dir=${aws_ssh_dir}/data
 source ${aws_ssh_dir}/config
 
