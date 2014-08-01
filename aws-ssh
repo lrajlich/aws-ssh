@@ -20,7 +20,12 @@ if [ -z $1 ]; then
 	usage
 fi
 
-aws_ssh_dir=$(dirname $(readlink $BASH_SOURCE))
+if [ -z `readlink $BASH_SOURCE` ]
+then
+	aws_ssh_dir=`dirname $0`
+else
+	aws_ssh_dir=$(dirname $(readlink $BASH_SOURCE))
+fi
 
 ## Configuration
 aws_ssh_data_dir=${aws_ssh_dir}/data
