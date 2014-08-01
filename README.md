@@ -36,5 +36,5 @@ winterfell-02
 ```
 Then, run a command and specify and instance name to connect to that host
 ```
-LUKEs-MacBook-Pro:aws-ssh lrajlich$ aws-ssh thewall-05
+LUKEs-MacBook-Pro:aws-ssh lrajlich$ aws-ssh thewall-02
 ```
