@@ -22,6 +22,7 @@ In addition, this project has a "config" file, in the root folder of the project
    * ```.PrivateIpAddress``` - Private IP Address
    * ```.PublicDnsName``` - Public DNS name
    * ```.PrivateDnsName``` - Private DNS name
+
 ### Example configuration
 ```
 user=ubuntu
