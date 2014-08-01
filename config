@@ -1,0 +1,3 @@
+user=ubuntu
+pem=~/.aws/dealpath.pem
+host_xpath=.PublicIpAddress
