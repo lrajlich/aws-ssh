@@ -17,9 +17,11 @@ Make sure your AWS cli is configured, following steps here:
 In addition, this project has a "config" file, in the root folder of the project, to be modified as needed, with 3 parameters:
  1. ```user``` - user used to connect to AWS hosts
  2. ```pem``` - pem file used for ssh key authentication with aws servers
- 3. ```host_xpath``` - Host to determine the host from the 
-   * ```.PublicIpAddress``` - Public ip address of the isntance
-   *
+ 3. ```host_xpath``` - Host to determine the host from the output of describe-instances. Some examples:
+   * ```.PublicIpAddress``` - Public ip address
+   * ```.PrivateIpAddress``` - Private IP Address
+   * ```.PublicDnsName``` - Public DNS name
+   * ```.PrivateDnsName``` - Private DNS name
 ### Example configuration
 ```
 user=ubuntu
