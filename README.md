@@ -1,5 +1,5 @@
 ## Description
-This project is meant to facilitate ssh'ing into aws servers. 
+This project is meant to facilitate ssh'ing into aws servers. Uses ec2 describe-instances to build a map of instance name to ssh host. Subsequently, a user can ssh using the instance name.
 
 ## Install
 ### Install steps for OSX
