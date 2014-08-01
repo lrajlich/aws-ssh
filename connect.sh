@@ -6,6 +6,6 @@
 # user - sourced (config)
 # pem -sourced (config)
 
-host=`cat ./data/listing | grep prod-thewall-04 | cut -f 2 -d "="`
-echo Connect to $instance_name - $host
-ssh -i ${pem} ${user}@$host
+host=`cat ${aws_ssh_data_dir}/listing | grep ${instance_name} | cut -f 2 -d "="`
+echo Connect to $instance_name - ${host}
+ssh -i ${pem} ${user}@${host}
