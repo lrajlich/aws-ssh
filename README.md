@@ -19,10 +19,10 @@ In addition, this project has a "config" file, in the root folder of the project
  1. ```user``` - user used to connect to AWS hosts
  2. ```pem``` - pem file used for ssh key authentication with aws servers
  3. ```host_xpath``` - Host to determine the host from the output of describe-instances. Some examples:
-   * ```.PublicIpAddress``` - Public ip address
-   * ```.PrivateIpAddress``` - Private IP Address
-   * ```.PublicDnsName``` - Public DNS name
-   * ```.PrivateDnsName``` - Private DNS name
+   * ```.PublicIpAddress``` - Use Public ip address as ssh host
+   * ```.PrivateIpAddress``` - Use Private IP Address as ssh host
+   * ```.PublicDnsName``` - Use Public DNS name as ssh host
+   * ```.PrivateDnsName``` - Use Private DNS name as ssh host
 
 ## Example Usage
 First, you must run "ls" to refresh the local list of instances
