@@ -43,6 +43,11 @@ mkdir -p ${aws_ssh_data_dir}
 describe_instances_json=${aws_ssh_data_dir}/describe-instances.json
 listing_file=${aws_ssh_data_dir}/listing
 
+## Refresh automatically if we don't have a listing yet
+if [ ! -e ${listing_file} ]; then
+    refresh=1
+fi
+
 ## Check to see if we should refresh data from Amazon and refresh if so
 if [ ${refresh} -eq 1 ]; then
     echo "Refresh instance list from Amazon"
