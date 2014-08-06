@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Auto refresh aws-ssh: `date`"
+export PATH=/usr/local/bin:$PATH
+
+`dirname $0`/aws-ssh ls --refresh > /dev/null
+
+## Check exit code
+exit=$?
+if [ $exit -ne 0 ]; then
+    echo aws-ssh error. Exit $exit
+    exit $exit
+fi

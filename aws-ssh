@@ -6,10 +6,11 @@ usage()
 cat << EOF
 Usage: aws-ssh argument [Options]
 Argument:
-	ls	Refresh listing of instances and display this listing
-	config	What is the config file path and show configuration
-	help	show this message
-	*	Connect to the host
+	ls	                Refresh listing of instances and display this listing
+	config	            What is the config file path and show configuration
+	help	            show this message
+	start-auto-refresh  NOT SUPPORTED. See Readme. Automatically refresh aws-ssh listing periodically (every 5 minutes)
+	*	                Connect to the host
 Options:
 	(None). Everything should in config.
 EOF
@@ -34,6 +35,8 @@ source ${aws_ssh_dir}/config
 case "$1" in
 	ls)
 		source ${aws_ssh_dir}/aws-ssh-ls.sh;;
+	start-auto-refresh)
+        source ${aws_ssh_dir}/start-auto-refresh.sh;;
 	config)
 		cat ${aws_ssh_dir}/config;;
 	help | \
