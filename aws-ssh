@@ -33,7 +33,7 @@ source ${aws_ssh_dir}/config
 
 case "$1" in
 	ls)
-		source ${aws_ssh_dir}/refresh.sh;;
+		source ${aws_ssh_dir}/aws-ssh-ls.sh;;
 	config)
 		cat ${aws_ssh_dir}/config;;
 	help | \
