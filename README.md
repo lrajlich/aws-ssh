@@ -40,3 +40,16 @@ Then, run a command and specify and instance name to connect to that host
 ```
 LUKEs-MacBook-Pro:aws-ssh lrajlich$ aws-ssh thewall-02
 ```
+## Auto-refresh
+You can have aws-ssh updates it's listing automatically, though this requires a manual step. This is run off a cron job. First you need to create log directories for aws-ssh auto refresh. When auto refresh runs, any stdout and stderr will be written to this location.
+```
+sudo mkdir -p /var/log/aws-ssh
+sudo chown `whoami` /var/log/aws-ssh
+```
+
+### Create cron job fo OSX 
+run ```crontab -e```. In Vim, enter the following line
+```
+*/5 * * * * /usr/local/aws-ssh/aws-ssh-auto-refresh >> /var/log/aws-ssh/cron.log 2>> /var/log/aws-ssh/cron.log
+```
+Press ```esc``` and then ```ZZ```. This will install your cron tab (if you don't have one). Otherwise, you can do a simple write+quit vim operation.
