@@ -18,6 +18,9 @@ for instance_id in $instance_ids;
 do
 	host=`cat ${describe_instances_json} | jq ".Reservations[].Instances[] | select(.InstanceId==\"$instance_id\") | ${host_xpath}" | sed 's/\"//g'`
 	name=`cat ${describe_instances_json} | jq ".Reservations[].Instances[] | select(.InstanceId==\"$instance_id\") | .Tags[] | select(.Key==\"Name\") | .Value" | sed 's/\"//g'`
+	if [ -z $name ]; then
+		name=${instance_id}
+	fi
 	if [ -z $instance_names ]; then
 		instance_names=$name
 	else
