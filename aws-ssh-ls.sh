@@ -81,7 +81,7 @@ if [ ${refresh} -eq 1 ]; then
 
 fi
 
-if [ $details ]; then
+if [ $details -eq 1 ]; then
 	cat ${listing_file} | sed 's/=/    /g' | sort
 else
 	cat ${listing_file} | cut -f 1 -d "=" | sort
