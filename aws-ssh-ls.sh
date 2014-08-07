@@ -15,12 +15,14 @@ Display list of aws-servers. Potentially refresh listing with --refresh command
 Options:
 	--refresh       Optional. When set, pull new aws data
 	--cached        Optional. When set, use cached data. This is the default behavor
+	--details	Optional. Show details for the servers. Right now this is only the host
 EOF
 exit 1
 }
 
 ## Parse arguments... Do manually since getopt is garbage and getopts doesn't support "long arguments"
 refresh=0
+details=0
 while [ "$#" -gt "0" ]
 do
     case $1 in
@@ -32,6 +34,8 @@ do
             refresh=1; shift;;
         --cached)
             refresh=0; shift;;
+	--details)
+	    details=1; shift;;
         *)
             echo "Not recognized command or option: $1"
             usage;;
@@ -77,5 +81,9 @@ if [ ${refresh} -eq 1 ]; then
 
 fi
 
-cat ${listing_file} | cut -f 1 -d "=" | sort
+if [ $details ]; then
+	cat ${listing_file} | sed 's/=/    /g' | sort
+else
+	cat ${listing_file} | cut -f 1 -d "=" | sort
+fi
 
