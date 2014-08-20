@@ -13,9 +13,9 @@ cat << EOF
 Usage: aws-ssh ls [Options]
 Display list of aws-servers. Potentially refresh listing with --refresh command
 Options:
-	--refresh       Optional. When set, pull new aws data
-	--cached        Optional. When set, use cached data. This is the default behavor
-	--details	Optional. Show details for the servers. Right now this is only the host
+	-r --refresh       Optional. When set, pull new aws data
+	-c --cached        Optional. When set, use cached data. This is the default behavor
+	-d --details	Optional. Show details for the servers. Right now this is only the host
 EOF
 exit 1
 }
@@ -30,11 +30,11 @@ do
             shift;;
         --help)
             usage;;
-        --refresh)
+        -r | --refresh)
             refresh=1; shift;;
-        --cached)
+        -c | --cached)
             refresh=0; shift;;
-	--details)
+	-d | --details)
 	    details=1; shift;;
         *)
             echo "Not recognized command or option: $1"
