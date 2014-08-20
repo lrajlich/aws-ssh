@@ -74,7 +74,7 @@ if [ ${refresh} -eq 1 ]; then
         else
             instance_names="$name\n$instance_names"
         fi
-        echo $name=$host >> ${listing_file}.tmp
+        echo -e "$name\t${instance_id}\t$host" >> ${listing_file}.tmp
     done
 
     mv ${listing_file}.tmp ${listing_file}
@@ -82,8 +82,9 @@ if [ ${refresh} -eq 1 ]; then
 fi
 
 if [ $details -eq 1 ]; then
-	cat ${listing_file} | sed 's/=/    /g' | sort
+	echo -e "Name\tInstance_id\tHost"
+	cat ${listing_file} | sort
 else
-	cat ${listing_file} | cut -f 1 -d "=" | sort
+	cat ${listing_file} | cut -f 1 | sort
 fi
 
