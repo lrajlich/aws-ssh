@@ -45,10 +45,6 @@ resque-01
 * ```aws-ssh ls --help``` Show list of options
   * ```-d``` show details like instance id and ip address. Tab delimited
   * ```-r``` manually refresh the instance list (by default, it will use local cached list for speed)
-Then, run a command and specify and instance name to connect to that host
-```
-LUKEs-MacBook-Pro:aws-ssh lrajlich$ aws-ssh thewall-02
-```
 
 #### Connect to server
 * ```aws-ssh app-01``` Connect to server named app-01
