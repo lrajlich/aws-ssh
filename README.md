@@ -53,7 +53,7 @@ LUKEs-MacBook-Pro:aws-ssh lrajlich$ aws-ssh thewall-02
 #### Connect to server
 * ```aws-ssh app-01``` Connect to server named app-01
   * This operates on grepping for the string, so things like ```aws-ssh con.*-01``` will work
-  * You can also connect using information from ```aws-ssh ls -d```
+  * You can also connect using instance_id or ip address from ```aws-ssh ls -d```
 
 #### Scripting Examples
 Scripting is fairly straightforward - ```aws-ssh ls -d``` is tab delimited and can be used for a number of use cases
