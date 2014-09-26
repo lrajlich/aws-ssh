@@ -24,22 +24,42 @@ In addition, this project has a "config" file, in the root folder of the project
    * ```.PublicDnsName``` - Use Public DNS name as ssh host
    * ```.PrivateDnsName``` - Use Private DNS name as ssh host
 
-If you edit the config file from the directory you git cloned into, you will have to run "make install" again as the config used by the command line is in the installed directory - /usr/local/aws-ssh/config (which installed via Make install).
+If you edit the config file from the directory you git cloned into, you will have to run ```make install``` again as the config used by the command line is in the installed directory - /usr/local/aws-ssh/config (which installed via Make install).
 
-## Example Usage
-First, you must run "ls" to refresh the local list of instances
+## Usage
+#### Show options
+* ```aws-ssh help``` show available commands
+
+#### List servers
+* ```aws-ssh ls``` show a list of aws instances
 ```
-LUKEs-MacBook-Pro:aws-ssh lrajlich$ aws-ssh ls
-thewall-test
-thewall-01
-winterfell-01
-thewall-02
-winterfell-02
+LUKEs-MacBook-Pro:~ lrajlich$ aws-ssh ls
+app-01
+app-02
+app-03
+consumer-01
+consumer-02
+consumer-03
+resque-01
 ```
+* ```aws-ssh ls --help``` Show list of options
+  * ```-d``` show details like instance id and ip address. Tab delimited
+  * ```-r``` manually refresh the instance list (by default, it will use local cached list for speed)
 Then, run a command and specify and instance name to connect to that host
 ```
 LUKEs-MacBook-Pro:aws-ssh lrajlich$ aws-ssh thewall-02
 ```
+
+#### Connect to server
+* ```aws-ssh app-01``` Connect to server named app-01
+  * This operates on grepping for the string, so things like ```aws-ssh con.*-01``` will work
+  * You can also connect using information from ```aws-ssh ls -d```
+
+#### Scripting Examples
+Scripting is fairly straightforward - ```aws-ssh ls -d``` is tab delimited and can be used for a number of use cases
+* ```aws-ssh ls -d | grep app-01 | cut -f 2``` Get instance id for app-01, usage for AWS api operations on that server
+* ```aws-ssh ls -d | cut -f 3 | perl -pe "s/\n/,/g"``` Get comma seperated list of ip address, which can be used as argument to [pdsh -w](http://linux.die.net/man/1/pdsh parameter)
+
 ## Auto-refresh
 You can have aws-ssh updates it's listing automatically, though this requires a manual step. This is run off a cron job. First you need to create log directories for aws-ssh auto refresh. When auto refresh runs, any stdout and stderr will be written to this location.
 ```
@@ -47,7 +67,7 @@ sudo mkdir -p /var/log/aws-ssh
 sudo chown `whoami` /var/log/aws-ssh
 ```
 
-### Create cron job fo OSX 
+#### Create cron job fo OSX 
 run ```crontab -e```. In Vim, enter the following line
 ```
 */5 * * * * /usr/local/aws-ssh/aws-ssh-auto-refresh >> /var/log/aws-ssh/cron.log 2>> /var/log/aws-ssh/cron.log
