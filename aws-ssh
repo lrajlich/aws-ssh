@@ -8,6 +8,7 @@ Usage: aws-ssh argument [Options]
 Argument:
 	ls	                Refresh listing of instances and display this listing
 	config	            What is the config file path and show configuration
+	sftp				Connect to an instance with SFTP instead of SSH
 	help	            show this message
 	start-auto-refresh  NOT SUPPORTED. See Readme. Automatically refresh aws-ssh listing periodically (every 5 minutes)
 	*	                Connect to the host
@@ -42,6 +43,11 @@ case "$1" in
 	help | \
 	--help)
 		usage;;
+	sftp)
+		if [ -n $2 ]; then
+			instance_name=$2
+			source ${aws_ssh_dir}/sftp.sh
+		fi;;
 	*)
 		instance_name=$1
 		source ${aws_ssh_dir}/connect.sh;;
