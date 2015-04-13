@@ -8,7 +8,7 @@ This library requires awscli (http://docs.aws.amazon.com/cli/latest/index.html) 
 brew install pip
 pip install awscli
 brew install jq
-git clone git@github.com:lrajlich/aws-ssh.git
+git clone git@github.com:dealpath/aws-ssh.git
 cd aws-ssh
 make install
 ```
