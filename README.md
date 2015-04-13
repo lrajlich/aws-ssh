@@ -12,11 +12,20 @@ git clone git@github.com:dealpath/aws-ssh.git
 cd aws-ssh
 make install
 ```
-## Configure
+## Configure AWS cli
 Make sure your AWS cli is configured, following steps here: (http://docs.aws.amazon.com/cli/latest/reference/configure/index.html)
 
-In addition, this project has a "config" file, in the root folder of the project, to be modified as needed, with 3 parameters:
- 1. ```user``` - user used to connect to AWS hosts
+Parameters:
+ 1. ```aws_access_key_id``` - from your IAM user
+ 2. ```aws_secret_access_key``` - from your IAM user
+ 3. ```region``` - us-west-2
+
+Once you are done with configuration, run ```aws ec2 describe-instances``` to test
+
+## Configure aws-ssh
+
+In addition, this project has a "config" file, in the root folder of the project, to be modified as needed, with 3 parameters. You should ask someone for the specifics of user/pem as this is shared across the team:
+ 1. ```user``` - user used to connect to AWS hosts. This should be "ubuntu".
  2. ```pem``` - pem file used for ssh key authentication with aws servers
  3. ```host_xpath``` - Host to determine the host from the output of describe-instances. Some examples:
    * ```.PublicIpAddress``` - Use Public ip address as ssh host
@@ -25,6 +34,8 @@ In addition, this project has a "config" file, in the root folder of the project
    * ```.PrivateDnsName``` - Use Private DNS name as ssh host
 
 If you edit the config file from the directory you git cloned into, you will have to run ```make install``` again as the config used by the command line is in the installed directory - /usr/local/aws-ssh/config (which installed via Make install).
+
+Once you are done configuring aws-ssh, run ```aws-ssh ls``` to test the configuration and refresh your local server list
 
 ## Usage
 #### Show options
