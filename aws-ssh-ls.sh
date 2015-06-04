@@ -66,6 +66,7 @@ if [ ${refresh} -eq 1 ]; then
     do
         host=`cat ${describe_instances_json} | jq ".Reservations[].Instances[] | select(.InstanceId==\"$instance_id\") | ${host_xpath}" | sed 's/\"//g'`
         name=`cat ${describe_instances_json} | jq ".Reservations[].Instances[] | select(.InstanceId==\"$instance_id\") | .Tags[] | select(.Key==\"Name\") | .Value" | sed 's/\"//g'`
+        hostname=`cat ${describe_instances_json} | jq ".Reservations[].Instances[] | select(.InstanceId==\"$instance_id\") | .PrivateDnsName" | sed 's/\"//g' | sed 's/\..*//'`
         if [ -z $name ]; then
             name=${instance_id}
         fi
@@ -74,7 +75,7 @@ if [ ${refresh} -eq 1 ]; then
         else
             instance_names="$name\n$instance_names"
         fi
-        echo -e "$name\t${instance_id}\t$host" >> ${listing_file}.tmp
+        echo -e "$name\t${instance_id}\t${hostname}\t$host" >> ${listing_file}.tmp
     done
 
     mv ${listing_file}.tmp ${listing_file}
@@ -82,8 +83,7 @@ if [ ${refresh} -eq 1 ]; then
 fi
 
 if [ $details -eq 1 ]; then
-	echo -e "Name\tInstance_id\tHost"
-	cat ${listing_file} | sort
+	cat ${listing_file} | sort | echo -e "Name\tInstance_id\tHostname\tHost\n $(cat -)" |  column -t
 else
 	cat ${listing_file} | cut -f 1 | sort
 fi

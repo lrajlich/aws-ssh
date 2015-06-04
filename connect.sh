@@ -6,9 +6,8 @@
 # user - sourced (config)
 # pem -sourced (config)
 
-
 echo "Connect to host..."
-cat ${aws_ssh_data_dir}/listing | grep "${instance_name}\s" 
+cat ${aws_ssh_data_dir}/listing | grep "${instance_name}\s"
 
 num_lines=$(cat ${aws_ssh_data_dir}/listing | grep "${instance_name}\s" | wc -l)
 if [ ${num_lines} -eq 0 ]; then
@@ -21,5 +20,5 @@ if [ ${num_lines} -gt 1 ]; then
 	exit 1
 fi
 
-host=$(cat ${aws_ssh_data_dir}/listing | grep "${instance_name}\s" | cut -f 3)
+host=$(cat ${aws_ssh_data_dir}/listing | grep "${instance_name}\s" | cut -f 4)
 ssh -i ${pem} ${user}@${host}

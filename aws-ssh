@@ -10,6 +10,7 @@ Argument:
 	config	            What is the config file path and show configuration
 	sftp				Connect to an instance with SFTP instead of SSH
 	help	            show this message
+	lookup				display information about a server that matches the pattern
 	start-auto-refresh  NOT SUPPORTED. See Readme. Automatically refresh aws-ssh listing periodically (every 5 minutes)
 	*	                Connect to the host
 Options:
@@ -48,6 +49,9 @@ case "$1" in
 			instance_name=$2
 			source ${aws_ssh_dir}/sftp.sh
 		fi;;
+	lookup)
+		instance_name=$2
+		cat ${aws_ssh_data_dir}/listing | grep "${instance_name}\s";;
 	*)
 		instance_name=$1
 		source ${aws_ssh_dir}/connect.sh;;
