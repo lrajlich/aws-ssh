@@ -21,5 +21,5 @@ if [ ${num_lines} -gt 1 ]; then
 	exit 1
 fi
 
-host=$(cat ${aws_ssh_data_dir}/listing | grep "${instance_name}\s" | cut -f 3)
+host=$(cat ${aws_ssh_data_dir}/listing | grep "${instance_name}\s" | cut -f 4)
 sftp -o IdentityFile=${pem} ${user}@${host}
