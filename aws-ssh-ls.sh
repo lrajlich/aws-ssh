@@ -75,6 +75,10 @@ if [ ${refresh} -eq 1 ]; then
         else
             instance_names="$name\n$instance_names"
         fi
+        if [[ -z $host || $host == "null" ]]; then
+            # fallback to private IP address if instance has no public IP
+            host=`cat ${describe_instances_json} | jq ".Reservations[].Instances[] | select(.InstanceId==\"$instance_id\") | .PrivateIpAddress" | sed 's/\"//g'`
+        fi
         echo -e "$name\t${instance_id}\t${hostname}\t$host" >> ${listing_file}.tmp
     done
 
@@ -87,4 +91,3 @@ if [ $details -eq 1 ]; then
 else
 	cat ${listing_file} | cut -f 1 | sort
 fi
-
