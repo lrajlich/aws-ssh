@@ -3,10 +3,14 @@ This project is meant to facilitate ssh'ing into aws servers. Uses ec2 describe-
 
 ## Install
 ### Install steps for OSX
+Install homebrew
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 This library requires awscli (http://docs.aws.amazon.com/cli/latest/index.html) and jq (http://stedolan.github.io/jq/). Awscli can be installed via pip (which in turn can be installed via brew) and jq can be installed via brew.
 ```
-brew install pip
-pip install awscli
+brew install python
+pip3 install awscli
 brew install jq
 git clone git@github.com:dealpath/aws-ssh.git
 cd aws-ssh
@@ -14,11 +18,25 @@ make install
 ```
 ## Configure AWS cli
 Make sure your AWS cli is configured, following steps here: (http://docs.aws.amazon.com/cli/latest/reference/configure/index.html)
+Make your .aws folder and go into it
+```
+mkdir ~/.aws
+cd ~/.aws
+```
+Create the ```config``` file with the following:
+```
+[default]
+region=us-west-2
+```
+Create the ```credentials``` file with the following:
+```
+[default]
+aws_access_key_id=
+aws_secret_access_key=
+```
+And enter your IAM user key id and secret from the .csv file received from DevOPs
 
-Parameters:
- 1. ```aws_access_key_id``` - from your IAM user
- 2. ```aws_secret_access_key``` - from your IAM user
- 3. ```region``` - us-west-2
+You should also receive a ```dealpath.pem``` file which you should also place within ```~/.aws```
 
 Once you are done with configuration, run ```aws ec2 describe-instances``` to test
 
