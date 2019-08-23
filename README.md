@@ -80,6 +80,13 @@ resque-01
   * This operates on grepping for the string, so things like ```aws-ssh con.*-01``` will work
   * You can also connect using instance_id or ip address from ```aws-ssh ls -d```
 
+#### Connect to server for file transfers
+* ```aws-ssh sftp ng-env```
+  * This operates similar to above for the server name
+  * No tab completion
+  * ```put``` to put files from your local machine to the remote machine
+  * ```get``` to get files from the remote machine to your local machine
+
 #### Scripting Examples
 Scripting is fairly straightforward - ```aws-ssh ls -d``` is tab delimited and can be used for a number of use cases
 * ```aws-ssh ls -d | grep app-01 | cut -f 2``` Get instance id for app-01, usage for AWS api operations on that server
